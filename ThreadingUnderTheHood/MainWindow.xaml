@@ -1,0 +1,56 @@
+﻿<Window x:Class="ThreadingUnderTheHood.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThreadingUnderTheHood"
+        mc:Ignorable="d"
+        Title="Threading - Under the Hood" Height="517.534" Width="595">
+    <Grid>
+        <Button x:Name="btnExplicitThreading" Content="Explicit Threading" HorizontalAlignment="Left" Margin="9,60,0,0" VerticalAlignment="Top" Width="277" Click="btnExplicitThreading_Click"/>
+        <Button x:Name="btnAsynchronousInvoke" Content="Asynchronous Invoke" HorizontalAlignment="Left" Margin="9,34,0,0" VerticalAlignment="Top" Width="277" Click="btnAsynchronousInvoke_Click" />
+        <Label x:Name="label" Content="Tasks Or Threads Queued: " HorizontalAlignment="Left" Margin="6,252,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTasksOrThreadsQueued" Content="0" HorizontalAlignment="Left" Margin="167,252,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnTaskParallelLibrary" Content="Task Parallel Library (TPL)" HorizontalAlignment="Left" Margin="9,86,0,0" VerticalAlignment="Top" Width="277" Click="btnTaskParallelLibrary_Click"/>
+        <Button x:Name="btnThreadPool" Content="Thread Pool" HorizontalAlignment="Left" Margin="9,112,0,0" VerticalAlignment="Top" Width="277" Click="btnThreadPool_Click"/>
+        <Button x:Name="btnStopAnalysis" Content="Stop Analysis" HorizontalAlignment="Left" Margin="295,34,0,0" VerticalAlignment="Top" Width="277" IsEnabled="False" Click="btnStopAnalysis_Click"/>
+        <Label x:Name="lblActiveWorkerThreadCount_title" Content="Active Worker Thread Count: " HorizontalAlignment="Left" Margin="6,278,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblActiveWorkerThreadCount" Content="0" HorizontalAlignment="Left" Margin="167,278,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy53" Content="Analysis Phase Duration: " HorizontalAlignment="Left" Margin="292,201,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAnalysisPhaseDuration" Content="00:00:00" HorizontalAlignment="Left" Margin="493,201,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy5" Content="Analysis Phase Start Time: " HorizontalAlignment="Left" Margin="292,174,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAnalysisPhaseStartTime" Content="00:00:00" HorizontalAlignment="Left" Margin="493,174,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Analyze .Net Threading Implementations:" HorizontalAlignment="Left" Margin="6,8,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy7" Content="Average Worker Spawn Time (ms): " HorizontalAlignment="Left" Margin="292,227,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAverageWorkerThreadSpawnTime" Content="0" HorizontalAlignment="Left" Margin="494,228,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="Analysis Phase: " HorizontalAlignment="Left" Margin="6,146,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAnalysisPhase" Content="" HorizontalAlignment="Left" Margin="167,146,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy2" Content="Thread Count: " HorizontalAlignment="Left" Margin="6,304,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblThreadCount" Content="0" HorizontalAlignment="Left" Margin="167,304,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy11" Content="Safe Queue Limit: " HorizontalAlignment="Left" Margin="6,226,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblSafeQueueLimit" Content="0" HorizontalAlignment="Left" Margin="167,226,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy1" Content="Process Memory Utilization (MB): " HorizontalAlignment="Left" Margin="292,279,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblProcessMemoryUtilization" Content="0" HorizontalAlignment="Left" Margin="494,279,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy3" Content="Workers Spawned In First Second: " HorizontalAlignment="Left" Margin="292,253,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblWorkerThreadsSpawnedInFirstSecond" Content="0" HorizontalAlignment="Left" Margin="494,253,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy4" Content="Threading Implementation: " HorizontalAlignment="Left" Margin="6,174,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblThreadingImplementation" Content="" HorizontalAlignment="Left" Margin="167,174,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgCompareThreadingImplementations" Margin="10,360,10,10" CanUserSortColumns="False" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Thread Implementation" IsReadOnly="True" Binding="{Binding ThreadingImplementation}" />
+                <DataGridTextColumn Header="Safe Limit" IsReadOnly="True" Binding="{Binding SafeQueueLimit}" />
+                <DataGridTextColumn Header="Workers" IsReadOnly="True" Binding="{Binding WorkerCount}" />
+                <DataGridTextColumn Header="Ave. Spawn Time" IsReadOnly="True" Binding="{Binding AverageWorkerSpawnTime}" />
+                <DataGridTextColumn Header="Workers In 1 Sec" IsReadOnly="True" Binding="{Binding WorkersSpawnedInFirstSecond}" />
+                <DataGridTextColumn Header="Memory Used" IsReadOnly="True" Binding="{Binding MemoryUtilization}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnUpdateThreadingImplementationComparison" Content="Update Threading Implementation Comparison" IsEnabled="False" HorizontalAlignment="Left" Margin="295,60,0,0" VerticalAlignment="Top" Width="277" Click="btnUpdateThreadingImplementationComparison_Click"/>
+        <Label x:Name="label_Copy6" Content="Threading Implementation Comparison:" HorizontalAlignment="Left" Margin="6,331,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbChosenQueueLimit" HorizontalAlignment="Left" Margin="419,86,0,0" VerticalAlignment="Top" Width="153" SelectionChanged="cmbChosenQueueLimit_SelectionChanged"/>
+        <Label x:Name="label_Copy9" Content="Chosen Queue Limit: " HorizontalAlignment="Left" Margin="291,84,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblNote" Content="(Waiting for thread count to go below...)" HorizontalAlignment="Left" Margin="210,304,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy8" Content="Max Queue Limit: " HorizontalAlignment="Left" Margin="6,201,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblMaxQueueLimit" Content="0" HorizontalAlignment="Left" Margin="167,201,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
